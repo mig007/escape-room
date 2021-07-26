@@ -1,0 +1,30 @@
+
+
+   
+  <div class="container" *ngIf="puzzle && puzzle.length">
+    
+    <!--<div class="row">
+      <div *ngFor="let glyph of glyphs | filter: 'show' : true; let idx = index" class="col-md-1 col-xs-2">
+        <div class="text-center">{{glyph.image}}</div>
+        <div class="text-center"><input   type="text"  style="text-align: center" maxlength="1" class="form-control text-uppercase"
+                                        id="glyph{{idx}}"
+                                        [(ngModel)]="glyph.input"
+                                        (click)="setFocus('glyph' + idx)"
+                                        (ngModelChange)="setFocus('glyph' + (idx + 1));checkPuzzle()" /></div>
+      </div>
+    </div>-->
+    <table class="puzzle">
+      <tr *ngFor="let row of puzzle">
+        <td *ngFor="let col of row">
+          <div *ngIf="col">
+            <div>{{col.image}}</div>
+            <input type="text" style="text-align: center" maxlength="1" class="form-control text-uppercase"                   
+                   [(ngModel)]="col.input"                   
+                   (ngModelChange)="checkPuzzle()" />
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+

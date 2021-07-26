@@ -1,0 +1,16 @@
+
+
+  <div *ngIf="selectedTrivia != null">
+    <div class="question">
+      {{selectedTrivia.question}}
+    </div>
+
+
+    <div class="answer">
+      <div class="input-group mb-3">
+        <input id="response" [(ngModel)]="response" type="text" class="form-control" placeholder="Type your answer here..." (keyup.enter)="onSubmit()">
+        <button (click)="onSubmit()" class="btn btn-primary" type="button" id="btnSubmit">Submit</button>
+      </div>
+    </div>
+    
+  </div>
