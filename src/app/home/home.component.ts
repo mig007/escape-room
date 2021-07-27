@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Registration } from '../registration';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  view:string = "welcome";
+  registration:Registration = {email: '', teamName: '', teamType: null}
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  changeView(viewName:string){
+    this.view = viewName;
+  }
 }

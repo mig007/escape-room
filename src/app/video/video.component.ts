@@ -18,12 +18,15 @@ export class VideoComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router, private videoService: VideoService, private ngZone: NgZone) { }
   
+  params:any;
   ngOnInit(): void {
+    this. params = this.route.snapshot.paramMap;
     this.getVideo();
+    
   }
 
   getVideo(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = Number(this.params.get('id'));
     this.videoService.getVideo(id)
       .subscribe(data => { this.video = data; this.addWistiaListener(this.video); });    
   }

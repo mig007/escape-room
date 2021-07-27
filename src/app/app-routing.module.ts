@@ -9,7 +9,7 @@ import { MapComponent } from './map/map.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'trivia', component: TriviaComponent, data: { tite: 'Trivia Game' } },
+  { path: 'trivia/:id', component: TriviaComponent, data: { tite: 'Trivia Game' } },
   { path: 'video/:id', component: VideoComponent },
   { path: 'translate', component: TranslateComponent },
   { path: 'login', component: LoginComponent },

@@ -14,6 +14,8 @@ import { FilterPipe } from './filter.pipe';
 import { LoginComponent } from './login/login.component';
 import { MapComponent } from './map/map.component';
 import { SafePipe } from './safe.pipe';
+import { AudioCheckComponent } from './audio-check/audio-check.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +27,9 @@ import { SafePipe } from './safe.pipe';
     FilterPipe,
     LoginComponent,
     MapComponent,
-    SafePipe
+    SafePipe,
+    AudioCheckComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,

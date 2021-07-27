@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../user';
 import { Router } from '@angular/router';
+import { Registration } from '../registration';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,8 @@ import { Router } from '@angular/router';
 
 export class RegisterComponent implements OnInit {
 
-  user: User = {email: "", first: "", last: "", phone: ""}
+  @Input() registration!: Registration;
+  
   constructor(private router: Router) { }
   
 
@@ -20,7 +22,7 @@ export class RegisterComponent implements OnInit {
    
   }
   onStart(): void {
-    this.router.navigate(['/trivia']);
+    this.router.navigate(['/trivia/0']);
     
   }
 }

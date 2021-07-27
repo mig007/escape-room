@@ -1,22 +1,17 @@
-<form>
-  <div class="form-group">
-    <label for="first">First Name</label>
-    <input id="first" [(ngModel)]="user.first" type="text" class="form-control" placeholder="First Name" />
-  </div>
-  <div class="form-group">
-    <label for="last">Last Name</label>
-    <input id="last" [(ngModel)]="user.last" type="text" class="form-control" placeholder="Last Name" />
-  </div>
+
+<h3>Please enter an email address for one of the team’s members.</h3>
+<p>
+  You’ll receive an email immediately that includes some hints should your team get stumped during the activity. 
+  Please don’t resort to using the emailed clues unless you get very stuck and don’t know what to do to next.
+</p>
+
+  
   <div class="form-group">
     <label for="email">Email</label>
-    <input id="email" [(ngModel)]="user.email" type="email" class="form-control" placeholder="Email" />
+    <input id="email" [(ngModel)]="registration.email" type="email" class="form-control" placeholder="Email" />
   </div>
 
-  <div class="form-group">
-    <label for="phone">Phone</label>
-    <input id="phone" [(ngModel)]="user.phone" type="text" class="form-control" placeholder="Phone" />
-  </div>
   <div class="form-group text-center">
     <button  (click)="onStart()" type="submit" class="btn btn-primary">Start</button>
   </div>
-</form>
+

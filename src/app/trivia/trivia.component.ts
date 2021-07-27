@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Trivia } from '../trivia';
 import { TriviaService } from '../trivia.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Letter } from '../letter';
 import { iif } from 'rxjs';
 
@@ -12,7 +12,7 @@ import { iif } from 'rxjs';
 })
 export class TriviaComponent implements OnInit {
 
-  constructor(private triviaService: TriviaService, private router: Router, private elementRef: ElementRef) { }
+  constructor(private route: ActivatedRoute, private triviaService: TriviaService, private router: Router, private elementRef: ElementRef) { }
   
   selectedTrivia?: Trivia;
   trivia: Trivia[] = [];
@@ -22,6 +22,7 @@ export class TriviaComponent implements OnInit {
   answer: Letter[] = [];
 
   ngOnInit(): void {    
+    this.triviaIdx =  parseInt(this.route.snapshot.paramMap.get('id') || '0');
     this.getTrivia();
     this.selectTrivia(this.triviaIdx);
     
