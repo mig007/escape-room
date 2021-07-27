@@ -1,16 +1,27 @@
-
+<div class="container">
 
   <div *ngIf="selectedTrivia != null">
-    <div class="question">
-      {{selectedTrivia.question}}
-    </div>
-
-
-    <div class="answer">
-      <div class="input-group mb-3">
-        <input id="response" [(ngModel)]="response" type="text" class="form-control" placeholder="Type your answer here..." (keyup.enter)="onSubmit()">
-        <button (click)="onSubmit()" class="btn btn-primary" type="button" id="btnSubmit">Submit</button>
-      </div>
-    </div>
+    <h1 class="question">{{selectedTrivia.question}}</h1>
+      
     
+    <h2 class="hint">{{selectedTrivia.hint}}</h2>
+    
+
+    <div style="text-align: center; margin: auto;">
+    
+      <table class="answer">
+        <tr>
+        <td *ngFor="let x of answer" [ngClass]="{'border': x.letter != ' ', 'no-border': x.letter == ' '}">
+          <span *ngIf="x.visible">{{x.letter}}</span>
+        </td>
+        </tr>
+      </table>
+
+    </div>
+    <div>
+      
+      <input type="text" (ngModelChange)="checkLetter();letter='';" [(ngModel)]="letter" class="form-control" placeholder="pick a letter!" />
+    </div>
+    </div>
   </div>
+    

@@ -2,21 +2,21 @@ import { Trivia } from './trivia';
 
 export const TRIVIA_QUESTIONS: Trivia[] = [
   {
-    question: "What is your name?",
-    answer: "Mike",
-    correct: "way to go!",
-    hint: "Starts with an M..."
+    question: "Nephi's Motto",
+    answer: "Go And Do",
+    correct: "+5 Greeat Job!",
+    hint: "I will..."
   },
   {
-    question: "What is your favorite color?",
-    answer: "Yellow",
-    correct: "yeah it is",
-    hint: "Red, _____, and blue"
+    question: "Joseph's Discoveery",
+    answer: "Ask of God",
+    correct: "+5 Amazings",
+    hint: "(for those who lack wisdom)"
   },
   {
-    question: "Where do you live?",
-    answer: "Mapleton",
-    correct: "what an awesome place",
-    hint: "Small town south of Provo, UT"
+    question: "Heavenly Father's advice to young Joseph",
+    answer: "Hear Him",
+    correct: "+10 3 in a row!",
+    hint: "This is my beloved son..."
   },
 ]

@@ -3,6 +3,7 @@ import { GlyphService } from '../glyph.service';
 import { Glyph } from '../glyph';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-translate',
   templateUrl: './translate.component.html',
@@ -28,14 +29,14 @@ export class TranslateComponent implements OnInit {
       });
       //this.shuffle(this.glyphs);
 
-      this.puzzle[0] = [this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.L];
-      this.puzzle[1] = [this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.E];
-      this.puzzle[2] = [this.glyphsMap.x, this.glyphsMap.L, this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.H];
-      this.puzzle[3] = [this.glyphsMap.N, this.glyphsMap.E, this.glyphsMap.P, this.glyphsMap.H, this.glyphsMap.I];
-      this.puzzle[4] = [this.glyphsMap.x, this.glyphsMap.M, this.glyphsMap.x];
-      this.puzzle[5] = [this.glyphsMap.x, this.glyphsMap.U, this.glyphsMap.x];
-      this.puzzle[6] = [this.glyphsMap.x, this.glyphsMap.E, this.glyphsMap.x];
-      this.puzzle[7] = [this.glyphsMap.x, this.glyphsMap.L, this.glyphsMap.A, this.glyphsMap.M, this.glyphsMap.A, this.glyphsMap.N];
+      this.puzzle[0] = [this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.N, this.glyphsMap.x];
+      this.puzzle[1] = [this.glyphsMap.x, this.glyphsMap.L, this.glyphsMap.E, this.glyphsMap.M, this.glyphsMap.U, this.glyphsMap.E, this.glyphsMap.L];
+      this.puzzle[2] = [this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.P, this.glyphsMap.x, this.glyphsMap.L];
+      this.puzzle[3] = [this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.H, this.glyphsMap.x, this.glyphsMap.E];
+      this.puzzle[4] = [this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.S, this.glyphsMap.A, this.glyphsMap.R, this.glyphsMap.I, this.glyphsMap.A, this.glyphsMap.H];
+      this.puzzle[5] = [this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.A, this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.x, this.glyphsMap.I];
+      this.puzzle[6] = [this.glyphsMap.L, this.glyphsMap.A, this.glyphsMap.M, this.glyphsMap.A, this.glyphsMap.N];
+      
 
       this.puzzle.forEach(function (row) {
         row.forEach(function (col) {

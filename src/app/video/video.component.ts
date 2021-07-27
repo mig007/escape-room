@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, NgZone } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Video } from '../video';
 import { VideoService } from '../video.service';
@@ -16,7 +16,7 @@ export class VideoComponent implements OnInit {
 
   video?: Video;
 
-  constructor(private route: ActivatedRoute, private router: Router, private videoService: VideoService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private videoService: VideoService, private ngZone: NgZone) { }
   
   ngOnInit(): void {
     this.getVideo();
@@ -30,12 +30,13 @@ export class VideoComponent implements OnInit {
 
   addWistiaListener(video:Video) {    
       let r = this.router;      
+      let zone = this.ngZone;
       window._wq = window._wq || [];
       window._wq.push({
         id: this.video?.fileName, onReady: function (data: any) {
           video.wAPI = data;
           data.bind("end", function () {
-            r.navigate([video.next]);
+            zone.run(() => {r.navigate([video.next])});
           });
         }
       });    

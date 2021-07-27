@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { Trivia } from '../trivia';
 import { TriviaService } from '../trivia.service';
 import { Router } from '@angular/router';
+import { Letter } from '../letter';
+import { iif } from 'rxjs';
 
 @Component({
   selector: 'app-trivia',
@@ -10,21 +12,30 @@ import { Router } from '@angular/router';
 })
 export class TriviaComponent implements OnInit {
 
-  constructor(private triviaService: TriviaService, private router: Router) { }
+  constructor(private triviaService: TriviaService, private router: Router, private elementRef: ElementRef) { }
   
   selectedTrivia?: Trivia;
   trivia: Trivia[] = [];
   triviaIdx: number = 0;
-  response: string = '';
-
-  
+  response: string[] = [];
+  letter?: string = '';
+  answer: Letter[] = [];
 
   ngOnInit(): void {    
     this.getTrivia();
     this.selectTrivia(this.triviaIdx);
     
   }
-
+ 
+  ngAfterViewInit() {
+      this.elementRef.nativeElement.ownerDocument
+          .body.style.backgroundColor = 'red';
+  }
+  ngDestroy()
+  {
+    this.elementRef.nativeElement.ownerDocument
+          .body.style.backgroundColor = 'white';
+  }
  
   getTrivia(): void {
     this.triviaService.getTrivia().subscribe(x => this.trivia = x);
@@ -32,15 +43,65 @@ export class TriviaComponent implements OnInit {
 
   selectTrivia(idx: number): void {    
     if (this.trivia && this.trivia.length > idx)
+    {
       this.selectedTrivia = this.trivia[idx];
+      this.answer = this.getArray(this.selectedTrivia.answer);
+    }
     else
+    {
       this.selectedTrivia = undefined;
+      this.answer = [];
+    }
   }
 
-  onSubmit() {
+  getArray(str:string): Letter[]
+  {
+    let array = Array.from(str);
+    let retval:Letter[] = [];
+    array.forEach(function(x){
+      retval.push({letter: x})
+    });
+    return retval;
+  }
+  checkLetter()
+  {
+    setTimeout(() => {
+            this.wait();   
 
-    if (this.selectedTrivia != null) {
-      if (this.response.toLowerCase() == this.selectedTrivia.answer.toLowerCase()) {
+    }, 0);
+  }
+  wait()
+  {
+    if(this.letter == ' ')
+      this.letter = '';
+    if(this.letter)
+    {
+      
+      let complete = true;
+      let letter = this.letter;
+      let found = null;
+      this.answer.forEach(function(x){
+        if(x.letter.toUpperCase() == letter.toUpperCase())
+                found = !x.visible;
+          if(!x.letter || x.letter == ' ' || x.letter.toUpperCase() == letter.toUpperCase())
+          {
+              x.visible = true;
+          }
+          if(!x.visible)
+            complete = false;
+      });
+      
+      this.letter = ''; 
+      if(found === null)
+      {
+        alert(`there are no ${letter}'s`);
+      }
+      else if(found === false)
+      {
+        alert(`you've already selected ${letter}`);
+      }
+      if(complete && this.selectedTrivia)
+      {
         this.displayMessage(this.selectedTrivia.correct);
         if (this.trivia.length > this.triviaIdx + 1) {
           this.triviaIdx++;
@@ -50,12 +111,9 @@ export class TriviaComponent implements OnInit {
           this.router.navigate(['/video/0']);
         }
       }
-      else {
-        this.displayMessage(`try again\nhint: ${this.selectedTrivia.hint}`);
-      }
-      this.response = '';
     }
   }
+  
 
   displayMessage(message: string) {
     alert(message);
