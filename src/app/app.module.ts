@@ -18,6 +18,7 @@ import { AudioCheckComponent } from './audio-check/audio-check.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { BonusQuestionComponent } from './bonus-question/bonus-question.component';
 import { BaseComponent } from './base/base.component';
+import { BackgroundContainerComponent } from './background-container/background-container.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,8 @@ import { BaseComponent } from './base/base.component';
     AudioCheckComponent,
     WelcomeComponent,
     BonusQuestionComponent,
-    BaseComponent
+    BaseComponent,
+    BackgroundContainerComponent
   ],
   imports: [
     BrowserModule,

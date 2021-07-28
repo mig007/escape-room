@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2, OnDestroy } from '@angular/core';
 import { Trivia } from '../trivia';
 import { TriviaService } from '../trivia.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -32,15 +32,11 @@ export class TriviaComponent extends BaseComponent implements OnInit {
     
   }
  
-  ngAfterViewInit() {
-      this.elementRef.nativeElement.ownerDocument
-          .body.style.backgroundColor = 'red';
-  }
-  ngDestroy()
-  {
-    this.elementRef.nativeElement.ownerDocument
-          .body.style.backgroundColor = 'white';
-  }
+  // ngAfterViewInit() {
+  //     this.elementRef.nativeElement.ownerDocument
+  //         .body.style.backgroundColor = '#D72004';
+  // }
+  
  
   getTrivia(): void {
     this.triviaService.getTrivia().subscribe(x => this.trivia = x);

@@ -22,10 +22,7 @@ export class BonusQuestionComponent extends BaseComponent implements OnInit {
       this.startGame();
     }, this.TIME_OUT)
   }
-  ngAfterViewInit() {
-    this.elementRef.nativeElement.ownerDocument
-      .body.style.backgroundColor = 'red';
-  }
+  
   startGame() {
     this.router.navigate(['/video/0']);
   }
