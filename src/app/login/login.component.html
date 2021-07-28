@@ -1,25 +1,46 @@
+<div class="login-page">
 <div class="container">
-  <div style="max-width: 300px; margin: 0 auto;">
+  <div class="login-container">
+    <img src="../../assets/star-logo.png" width="100%" />
+    <div class="login-title">Ultra Secure Archeologist Database</div>
+    <img class="help-icon" src="../../assets/hint.png" (click)="showHint = true" style="float: right; " />
+   
+   
+    <div class="login-fields">
 
-    <div class="form-group">
-      <label class="control-label">User Name</label>
-      <input type="text" [(ngModel)]="user" class="form-control"  (keydown.enter)="login()" />
-    </div>
-    <div class="form-group">
-      <label class="control-label">Password</label>
-      <input type="text" [(ngModel)]="password" class="form-control" (keydown.enter)="login()" />
-    </div>
     
-    <div style="margin-top: 10px;" class="form-group">      
-      <div>
-        <button class="btn btn-primary" (click)="login()">Login</button>
+      <div class="input-group">
+          <input id="boxUser" [disabled]="showPassword" type="text" placeholder="{{userText}}" [(ngModel)]="user" class="form-control"  (keydown.enter)="submit()" />
+          <div class="input-group-append"><button  [disabled]="showPassword" class="btn btn-primary" (click)="submit()" type="button">Submit</button></div>
       </div>
-      <span style="cursor: pointer;" (click)="showHint = !showHint">Hint</span>
-      <div *ngIf="showHint" class="text-muted">bond... james bond...</div>
-
-
+    
+   
+    
+    <div *ngIf="showPassword">
+       
+        <div class="input-group">
+            <input id="boxPassword" type="text" placeholder="{{passwordText}}"  [(ngModel)]="password" class="form-control" (keydown.enter)="login()" />
+            <div class="input-group-append"><button  class="btn btn-primary" (click)="login()" type="button">Login</button></div>
+        </div>
+      
+        
+     
     </div>
-
+  </div>
   </div>
 
 </div>
+</div>
+
+<div class="hint-container" *ngIf="showHint" >
+    <div class="overlay" (click)="showHint=false;"></div>
+    <div class="hint" (click)="showHint=false;">
+    
+        <div class="clearfix"></div>
+        <span>Usernames are typically in the following format:</span>
+        <span>[firstname][lastname]</span>
+        <span class="text-muted">Example: josephsmith</span>
+    </div>
+    
+</div> 
+

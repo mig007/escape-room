@@ -11,7 +11,7 @@ export class BaseComponent implements OnInit {
   //to inherit the base components
   //1. add "extends BaseComponent" to the class definition of the component that you want to inherit BaseComponent on
   //2. add public renderer: Renderer2, public router:Router to the constructor
-  //3. add super(rendered, router); as the constructor implementation between {};
+  //3. add super(renderer, router); as the constructor implementation between {};
   constructor(public renderer: Renderer2, public router: Router) { }
 
   ngOnInit(): void {
