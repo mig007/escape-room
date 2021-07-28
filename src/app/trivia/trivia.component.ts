@@ -30,7 +30,7 @@ export class TriviaComponent implements OnInit {
  
   ngAfterViewInit() {
       this.elementRef.nativeElement.ownerDocument
-          .body.style.backgroundColor = 'yellow';
+          .body.style.backgroundColor = 'red';
   }
   ngDestroy()
   {
