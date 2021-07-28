@@ -31,18 +31,21 @@ export class VideoComponent implements OnInit {
       .subscribe(data => { this.video = data; this.addWistiaListener(this.video); });    
   }
 
-  addWistiaListener(video:Video) {    
+  addWistiaListener(video:Video) {
+    if(this.video)
+    {    
       let r = this.router;      
       let zone = this.ngZone;
       window._wq = window._wq || [];
       window._wq.push({
-        id: this.video?.fileName, onReady: function (data: any) {
+        id: this.video.fileName, onReady: function (data: any) {
           video.wAPI = data;
           data.bind("end", function () {
             zone.run(() => {r.navigate([video.next])});
           });
         }
-      });    
+      });  
+    }  
   }
 
 }
