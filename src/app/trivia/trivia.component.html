@@ -11,7 +11,7 @@
     
       <table class="answer">
         <tr>
-        <td *ngFor="let x of answer" [ngClass]="{'border': x.letter != ' ', 'no-border': x.letter == ' '}">
+        <td *ngFor="let x of answer" (click)="setFocus('boxLetter')" [ngClass]="{'border': x.letter != ' ', 'no-border': x.letter == ' '}">
           <span *ngIf="x.visible">{{x.letter}}</span>
         </td>
         </tr>
@@ -20,7 +20,7 @@
     </div>
     <div>
       
-      <input type="text" (ngModelChange)="checkLetter();letter='';" [(ngModel)]="letter" class="form-control" placeholder="pick a letter!" />
+      <input id="boxLetter" type="text" (ngModelChange)="checkLetter();letter='';" [(ngModel)]="letter" class="form-control" placeholder="pick a letter!" />
     </div>
     </div>
   </div>

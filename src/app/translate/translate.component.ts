@@ -2,6 +2,7 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import { GlyphService } from '../glyph.service';
 import { Glyph } from '../glyph';
 import { Router } from '@angular/router';
+import { LibraryService } from '../library.service';
 
 
 @Component({
@@ -9,13 +10,13 @@ import { Router } from '@angular/router';
   templateUrl: './translate.component.html',
   styleUrls: ['./translate.component.less']
 })
-export class TranslateComponent implements OnInit {
+export class TranslateComponent  implements OnInit {
 
   glyphs: Glyph[] = [];
   glyphsMap: Record<string, Glyph> = {};
   puzzle: Glyph[][] = [];
 
-  constructor(private glyphService: GlyphService, private renderer: Renderer2, private router: Router) { }
+  constructor(private glyphService: GlyphService, private router: Router) { }
 
   ngOnInit(): void {    
     this.getGlyphs();
@@ -86,18 +87,5 @@ export class TranslateComponent implements OnInit {
     if (solved)
       this.router.navigate(['/video/1']);
 
-  }
-  setFocus(id: string) {
-    try {
-      const element = this.renderer.selectRootElement('#' + id);
-      if (element)
-        setTimeout(() => {
-          element.focus();
-          element.select();          
-
-        }, 0);
-    }
-    catch{ }
-    
   }
 }

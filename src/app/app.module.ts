@@ -16,6 +16,8 @@ import { MapComponent } from './map/map.component';
 import { SafePipe } from './safe.pipe';
 import { AudioCheckComponent } from './audio-check/audio-check.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { BonusQuestionComponent } from './bonus-question/bonus-question.component';
+import { BaseComponent } from './base/base.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,9 @@ import { WelcomeComponent } from './welcome/welcome.component';
     MapComponent,
     SafePipe,
     AudioCheckComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    BonusQuestionComponent,
+    BaseComponent
   ],
   imports: [
     BrowserModule,

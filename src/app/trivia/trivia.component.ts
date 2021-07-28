@@ -1,18 +1,21 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { Trivia } from '../trivia';
 import { TriviaService } from '../trivia.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Letter } from '../letter';
 import { iif } from 'rxjs';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'app-trivia',
   templateUrl: './trivia.component.html',
   styleUrls: ['./trivia.component.less']
 })
-export class TriviaComponent implements OnInit {
+export class TriviaComponent extends BaseComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private triviaService: TriviaService, private router: Router, private elementRef: ElementRef) { }
+  constructor(private route: ActivatedRoute, private triviaService: TriviaService, public router: Router, public renderer: Renderer2, private elementRef: ElementRef) {
+    super(renderer, router);
+  }
   
   selectedTrivia?: Trivia;
   trivia: Trivia[] = [];
@@ -21,7 +24,8 @@ export class TriviaComponent implements OnInit {
   letter?: string = '';
   answer: Letter[] = [];
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
+    
     this.triviaIdx =  parseInt(this.route.snapshot.paramMap.get('id') || '0');
     this.getTrivia();
     this.selectTrivia(this.triviaIdx);
@@ -47,6 +51,7 @@ export class TriviaComponent implements OnInit {
     {
       this.selectedTrivia = this.trivia[idx];
       this.answer = this.getArray(this.selectedTrivia.answer);
+      this.setFocus('boxLetter');
     }
     else
     {
@@ -109,7 +114,7 @@ export class TriviaComponent implements OnInit {
           this.selectTrivia(this.triviaIdx);
         }
         else {
-          this.router.navigate(['/video/0']);
+          this.router.navigate(['/bonus']);
         }
       }
     }
