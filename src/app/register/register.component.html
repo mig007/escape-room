@@ -8,7 +8,7 @@
   
   <div class="form-group">
     <label for="email">Email</label>
-    <input id="email" [(ngModel)]="registration.email" type="email" class="form-control" placeholder="Email" />
+    <input id="email" [(ngModel)]="registration.email" type="email" class="form-control" placeholder="Email" (keydown.enter)="onStart()" />
   </div>
 
   <div class="form-group text-center">

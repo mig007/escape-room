@@ -2,6 +2,7 @@ import { Component, OnInit, Input, NgZone } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Video } from '../video';
 import { VideoService } from '../video.service';
+import { iif } from 'rxjs';
 
 @Component({
   selector: 'app-video',
@@ -15,12 +16,14 @@ import { VideoService } from '../video.service';
 export class VideoComponent implements OnInit {
 
   video?: Video;
+  isComplete: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private videoService: VideoService, private ngZone: NgZone) { }
   
   params:any;
+  hasListener:boolean = false;
   ngOnInit(): void {
-    this. params = this.route.snapshot.paramMap;
+    this.params = this.route.snapshot.paramMap;
     this.getVideo();
     
   }
@@ -28,24 +31,34 @@ export class VideoComponent implements OnInit {
   getVideo(): void {
     const id = Number(this.params.get('id'));
     this.videoService.getVideo(id)
-      .subscribe(data => { this.video = data; this.addWistiaListener(this.video); });    
+      .subscribe(data => { 
+      this.isComplete = true;
+        this.video = data; 
+        this.addWistiaListener(this);
+      });    
   }
-
-  addWistiaListener(video:Video) {
+  navigate(){
     if(this.video)
-    {    
-      let r = this.router;      
-      let zone = this.ngZone;
+      this.router.navigate([this.video.next]);
+  }
+  addWistiaListener(vm:any) {
+    
+   
       window._wq = window._wq || [];
       window._wq.push({
-        id: this.video.fileName, onReady: function (data: any) {
-          video.wAPI = data;
-          data.bind("end", function () {
-            zone.run(() => {r.navigate([video.next])});
+        id: vm.video.fileName, onReady: function (data: any) {
+          vm.ngZone.run(() => {
+          vm.hasListener = true;
+          console.log(vm.hasListener, 'has a listener');
+          data.bind("end", () => {
+            
+            vm.isComplete = true;
+            vm.ngZone.run(() => {vm.navigate()});
           });
+        });
         }
       });  
-    }  
+    
   }
 
 }
