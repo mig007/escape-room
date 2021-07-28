@@ -17,7 +17,7 @@ export class VideoComponent implements OnInit {
 
   video?: Video;
   isComplete: boolean = false;
-
+  isLoading: boolean = true;
   constructor(private route: ActivatedRoute, private router: Router, private videoService: VideoService, private ngZone: NgZone) { }
   
   params:any;
@@ -35,6 +35,7 @@ export class VideoComponent implements OnInit {
       this.isComplete = true;
         this.video = data; 
         this.addWistiaListener(this);
+        this.isLoading = false;
       });    
   }
   navigate(){
