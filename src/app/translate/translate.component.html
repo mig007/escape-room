@@ -1,30 +1,40 @@
 
 
-   
-  <div class="container" *ngIf="puzzle && puzzle.length">
+<div class="background"></div>
+  <div class="container"   *ngIf="puzzle && puzzle.length">
     
-    <!--<div class="row">
-      <div *ngFor="let glyph of glyphs | filter: 'show' : true; let idx = index" class="col-md-1 col-xs-2">
-        <div class="text-center">{{glyph.image}}</div>
-        <div class="text-center"><input   type="text"  style="text-align: center" maxlength="1" class="form-control text-uppercase"
-                                        id="glyph{{idx}}"
-                                        [(ngModel)]="glyph.input"
-                                        (click)="setFocus('glyph' + idx)"
-                                        (ngModelChange)="setFocus('glyph' + (idx + 1));checkPuzzle()" /></div>
-      </div>
-    </div>-->
-    <table class="puzzle">
+    <!-- <table class="puzzle">
       <tr *ngFor="let row of puzzle">
         <td *ngFor="let col of row">
-          <div *ngIf="col">
+          <div *ngIf="col" class="symbol">
             <div>{{col.image}}</div>
-            <input type="text" style="text-align: center" maxlength="1" class="form-control text-uppercase"                   
-                   [(ngModel)]="col.input"                   
-                   (ngModelChange)="checkPuzzle()" />
+              <input type="text" style="text-align: center" maxlength="1" class="form-control text-uppercase"                   
+                   [(ngModel)]="col.input"   /> 
           </div>
+          <div *ngIf="!col"></div>
         </td>
       </tr>
-    </table>
-  </div>
+    </table> -->
+    <div class="text-center">
+        <img src="assets/papyrus.png" class="img-papyrus" />
+    </div>
+    
+  
+    <div class="row text-center" style="margin-top:10px;">
+      
+        <div *ngFor="let glyph of keyGlyphs; let idx = index" class="col-3 col-sm-2 col-lg-1">
+          
+          <div class="text-center" class="glyph"><img [src]="'assets/letters/' + glyph.translation + '.png'" /></div>
+          <div class="text-center"><input   type="text"  style="text-align: center" maxlength="1" class="form-control text-uppercase"
+                                          id="glyph{{idx}}"
+                                          [(ngModel)]="glyph.input"
+                                          (click)="setFocus('glyph' + idx)"
+                                          (ngModelChange)="setFocus('glyph' +  (idx + 1 < keyGlyphs.length  ? idx + 1 : 0));" /></div>
+        </div>
+      </div>
+<div class="text-center" style="margin-top:20px;">
+    <button type="button" class="btn btn-primary" (click)="checkPuzzle()">Submit</button>
+</div>
+      {{translateService.timeEllapsed* 1000 | date:'H:mm:ss':'UTC'}}
 
-
+</div>

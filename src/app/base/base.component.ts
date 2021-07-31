@@ -19,9 +19,6 @@ export class BaseComponent implements OnInit {
 
 
   setFocus(id: string) {
-    console.log('setfocus', id);
-  
-      
         setTimeout(() => {
           const element = this.renderer.selectRootElement('#' + id, true);
           if (element) {

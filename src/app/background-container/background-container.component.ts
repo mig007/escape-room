@@ -10,6 +10,7 @@ export class BackgroundContainerComponent implements OnInit {
   
   constructor() { }
   @Input() color:string = "#FFFFFF";
+  @Input() image:string = "";
   ngOnInit(): void {
   }
 
