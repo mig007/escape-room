@@ -1,46 +1,77 @@
 <div class="login-page">
-<div class="container">
-  <div class="login-container">
-    <img src="assets/star-logo.png" width="100%" />
-    <div class="login-title">Ultra Secure Archeologist Database</div>
-    <img class="help-icon" src="assets/hint.png" (click)="showHint = true" style="float: right; " />
-   
-   
-    <div class="login-fields">
+  <div class="container">
+    <div class="login-container">
+      <img src="assets/star-logo.png" width="100%" />
+      <div class="login-title">Ultra Secure Archeologist Database</div>
+      <img  class="help-icon" src="assets/hint.png" (click)="showHint = true" style="float: right; " />
 
-    
-      <div class="input-group">
-          <input id="boxUser" [disabled]="showPassword" type="text" placeholder="{{userText}}" [(ngModel)]="user" class="form-control"  (keydown.enter)="submit()" />
-          <div class="input-group-append"><button  [disabled]="showPassword" class="btn btn-primary" (click)="submit()" type="button">Submit</button></div>
-      </div>
-    
-   
-    
-    <div *ngIf="showPassword">
-       
+
+      <div class="login-fields">
+
+
         <div class="input-group">
-            <input id="boxPassword" type="text" placeholder="{{passwordText}}"  [(ngModel)]="password" class="form-control" (keydown.enter)="login()" />
-            <div class="input-group-append"><button  class="btn btn-primary" (click)="login()" type="button">Login</button></div>
+          <input id="boxUser" [disabled]="showPassword" type="text" placeholder="{{userText}}" [(ngModel)]="user" class="form-control" (keydown.enter)="submit()" />
+          <div class="input-group-append"><button [disabled]="showPassword" class="btn btn-primary" (click)="submit()" type="button">Submit</button></div>
         </div>
-      
-        
-     
+
+
+
+        <div *ngIf="showPassword">
+          <div class="input-group">
+            <input id="boxPassword"  [disabled]="showQuestion" type="text" placeholder="{{passwordText}}" [(ngModel)]="password" class="form-control" (keydown.enter)="login()" />
+            <div class="input-group-append"><button class="btn btn-primary" [disabled]="showQuestion" (click)="login()" type="button">Login</button></div>
+          </div>
+          <div class="text-center"  *ngIf="!showQuestion" >
+            <a (click)="showPasswordHint=true;">Password Hint</a>
+          </div>
+        </div>
+
+        <div *ngIf="showQuestion">          
+          <div class="input-group">
+            <input id="boxQuestion" type="text" placeholder="{{questionText}}" [(ngModel)]="secuirtyQuestion" class="form-control" (keydown.enter)="question()" />
+            <div class="input-group-append"><button class="btn btn-primary" (click)="login()" type="button">Submit</button></div>
+          </div>
+          <div class="text-center">
+            <a (click)="showQuestionHint=true;">Security Question Hint</a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="hint-container" *ngIf="showHint">
+  <div class="overlay" (click)="showHint=false;"></div>
+  <div class="hint" (click)="showHint=false;">
+    <div class="clearfix"></div>
+    <span>Usernames are typically in the following format:</span>
+    <span>[firstname][lastname]</span>
+    <span class="text-muted">Example: josephsmith</span>
+  </div>
+</div>
+<div class="hint-container" *ngIf="showPasswordHint">
+  <div class="overlay" (click)="showPasswordHint=false;"></div>
+  <div class="hint" (click)="showPasswordHint=false;">
+    <div class="clearfix"></div>
+    <span>--Password Hint--</span>
+    <div>
+      When one seeks direction that’s crisper and clearer<br />
+      The best place to start is to look in a mirror<br />
+      If mirrors are scarce and answers unseen<br />
+      Then use a selfie cam and look at the screen
     </div>
   </div>
+</div>
+<div class="hint-container" *ngIf="showQuestionHint">
+  <div class="overlay" (click)="showQuestionHint=false;"></div>
+  <div class="hint" (click)="showPasswordHint=false;">
+    <div class="clearfix"></div>
+    <span>--Security Question--</span>
+    <p>What is your favorite song?</p>
+    <p>Hint: green hymnal?</p>
   </div>
-
 </div>
-</div>
-
-<div class="hint-container" *ngIf="showHint" >
-    <div class="overlay" (click)="showHint=false;"></div>
-    <div class="hint" (click)="showHint=false;">
-    
-        <div class="clearfix"></div>
-        <span>Usernames are typically in the following format:</span>
-        <span>[firstname][lastname]</span>
-        <span class="text-muted">Example: josephsmith</span>
-    </div>
-    
-</div> 
 

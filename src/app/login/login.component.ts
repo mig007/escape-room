@@ -9,48 +9,74 @@ import { BaseComponent } from '../base/base.component';
   styleUrls: ['./login.component.less']
 })
 export class LoginComponent extends BaseComponent implements OnInit {
- 
-  
-  constructor(public renderer: Renderer2, public router:Router) {
+
+
+  constructor(public renderer: Renderer2, public router: Router) {
     super(renderer, router);
 
-   }
+  }
   USER_NAME: string = 'frankgordon';
-  PASSWORD: string = 'baptisim';
+  userText: string = 'Username:';
   user: string = '';
-  password: string = '';
   showHint: boolean = false;
+
+
+  PASSWORD: string = 'baptisim';
+  passwordText: string = 'Password:';
+  password: string = '';
   showPassword: boolean = false;
-  invalidUser: boolean = false;
-  userText:string = 'Username:';
-  passwordText:string ='Password:';
+  showPasswordHint: boolean = false;
+
+
+  SECUIRTY_ANSWER: string = 'go forth with faith'
+  questionText: string = 'Security Question';
+  secuirtyQuestion: string = '';
+  showQuestion: boolean = false;
+  showQuestionHint: boolean = false;
+
+
+
+
+
   ngOnInit(): void {
+
+  }
+  ngAfterViewInit(): void {
+
     this.setFocus('boxUser');
   }
-submit(){
-  
-  if (this.user.toLowerCase() == this.USER_NAME.toLowerCase())
-  {
-    this.setFocus('boxPassword');
-    this.showPassword = true;
-  }
-  else
-  {
-    this.user = '';
-    this.userText = 'Invalid Username: Try Again';
-  }
-}
-  login() {
-    
-    if (this.password.toLowerCase()  == this.PASSWORD.toLowerCase() )
-    {
-      this.router.navigate(['/video/2']);
+  submit() {
+    if (this.user.toLowerCase() == this.USER_NAME.toLowerCase()) {
+      this.setFocus('boxPassword');
+      this.showPassword = true;
     }
-    else
-    {
+    else {
+      this.user = '';
+      this.userText = 'Invalid Username: Try Again';
+    }
+  }
+  login() {
+
+    if (this.password.toLowerCase() == this.PASSWORD.toLowerCase()) {
+      this.showQuestion = true;
+      this.setFocus('boxQuestion')
+
+    }
+    else {
       this.password = '';
       this.passwordText = 'Invalid Password: Try Again';
     }
   }
+  question() {
+    if (this.secuirtyQuestion == this.SECUIRTY_ANSWER) {
+      this.router.navigate(['/video/5']);
+    }
+    else {
+      this.secuirtyQuestion = '';
+      this.questionText = 'Incorect Response: Try Again';
+    }
+
+  }
+  
 
 }

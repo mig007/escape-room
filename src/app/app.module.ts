@@ -19,6 +19,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { BonusQuestionComponent } from './bonus-question/bonus-question.component';
 import { BaseComponent } from './base/base.component';
 import { BackgroundContainerComponent } from './background-container/background-container.component';
+import { GoAndDoComponent } from './go-and-do/go-and-do.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import { BackgroundContainerComponent } from './background-container/background-
     WelcomeComponent,
     BonusQuestionComponent,
     BaseComponent,
-    BackgroundContainerComponent
+    BackgroundContainerComponent,
+    GoAndDoComponent
   ],
   imports: [
     BrowserModule,

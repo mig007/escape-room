@@ -7,6 +7,7 @@ import { TranslateComponent } from './translate/translate.component';
 import { LoginComponent } from './login/login.component';
 import { MapComponent } from './map/map.component';
 import { BonusQuestionComponent } from './bonus-question/bonus-question.component';
+import { GoAndDoComponent } from './go-and-do/go-and-do.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'map', component: MapComponent },
   { path: 'bonus', component: BonusQuestionComponent },
+  { path: 'go-and-do', component: GoAndDoComponent },
 ];
 
 @NgModule({

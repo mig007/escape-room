@@ -21,11 +21,13 @@ export class BaseComponent implements OnInit {
   setFocus(id: string) {
         setTimeout(() => {
           const element = this.renderer.selectRootElement('#' + id, true);
-          if (element) {
+          if (element) {            
             element.focus();
             element.select();
           }
-        }, 0);
+          else
+            console.log(`element ${id} not found`);
+        }, 50);
     
   }
 
