@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Letter } from '../letter';
 import { iif } from 'rxjs';
 import { BaseComponent } from '../base/base.component';
+import { LetterService } from '../letter.service';
 
 @Component({
   selector: 'app-trivia',
@@ -13,7 +14,7 @@ import { BaseComponent } from '../base/base.component';
 })
 export class TriviaComponent extends BaseComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private triviaService: TriviaService, public router: Router, public renderer: Renderer2, private elementRef: ElementRef) {
+  constructor(private route: ActivatedRoute, private triviaService: TriviaService, public router: Router, public renderer: Renderer2, private letterService:LetterService) {
     super(renderer, router);
   }
   
@@ -46,7 +47,7 @@ export class TriviaComponent extends BaseComponent implements OnInit {
     if (this.trivia && this.trivia.length > idx)
     {
       this.selectedTrivia = this.trivia[idx];
-      this.answer = this.getArray(this.selectedTrivia.answer);
+      this.answer = this.letterService.getArray(this.selectedTrivia.answer);
       this.setFocus('boxLetter');
     }
     else
@@ -56,15 +57,7 @@ export class TriviaComponent extends BaseComponent implements OnInit {
     }
   }
 
-  getArray(str:string): Letter[]
-  {
-    let array = Array.from(str);
-    let retval:Letter[] = [];
-    array.forEach(function(x){
-      retval.push({letter: x})
-    });
-    return retval;
-  }
+  
   checkLetter()
   {
     setTimeout(() => {

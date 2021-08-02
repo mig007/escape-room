@@ -20,6 +20,7 @@ import { BonusQuestionComponent } from './bonus-question/bonus-question.componen
 import { BaseComponent } from './base/base.component';
 import { BackgroundContainerComponent } from './background-container/background-container.component';
 import { GoAndDoComponent } from './go-and-do/go-and-do.component';
+import { ScriptureSearchComponent } from './scripture-search/scripture-search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { GoAndDoComponent } from './go-and-do/go-and-do.component';
     BonusQuestionComponent,
     BaseComponent,
     BackgroundContainerComponent,
-    GoAndDoComponent
+    GoAndDoComponent,
+    ScriptureSearchComponent
   ],
   imports: [
     BrowserModule,

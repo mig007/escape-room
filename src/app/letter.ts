@@ -1,4 +1,5 @@
 export interface Letter {
     letter:string
-    visible?:boolean;
+  visible?: boolean;
+  answer?: string;
 }

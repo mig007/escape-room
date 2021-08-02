@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="hint">
+
+    ------<br />
+    TO DISCOVER THE TREASURE, A PATH MUST BE DETECTED<br />
+    THIS PATH IS REVEALED WHEN SIX DOTS ARE CONNECTED<br />
+    THE SIX HIDDEN BOOKS WILL SHOW WHICH DOTS TO CHOOSE<br />
+    LISTEN CLOSELY AND REMEMBER YOUR GO’S AND YOUR DO’S<br />
+    ------<br />
+  </div>
+  <div *ngIf="!allFound">
+    <div class="row">
+      <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let x of scriptures; let refIdx = index;">
+        <div>{{x.reference}}</div>
+        <span *ngFor="let a of x.answer; let letterIdx = index;">
+          <input id="box-{{refIdx}}-{{letterIdx}}"
+                 placeholder="_" class="answer" maxlength="1"
+                 [(ngModel)]="a.answer"
+                 [disabled]="x.isFound || false"
+                 [ngClass]="{'correct': x.isFound === true, 'incorrect': x.isFound === false}"
+                 (ngModelChange)="letterInput(refIdx, letterIdx)"
+                 (click)="setFocus('box-'+refIdx+'-'+letterIdx)" />
+        </span>
+      </div>
+
+    </div>
+    <div class="text-center" style="margin-top: 10px;">
+      <button type="button" class="btn btn-primary" (click)="allFound=true;">Skip</button>
+    </div>
+  </div>
+
+  <div *ngIf="allFound">
+    <div class="wordmash">
+      <span *ngFor="let x of scriptures">{{x.word}} </span>
+    </div>
+    <div class="form-group" *ngFor="let b of six_books; let idx = index;">
+      <select [(ngModel)]="b.response" class="form-control">
+        <option [ngValue]="null" disabled>Book #{{idx + 1}}</option>
+        <option *ngFor="let book of books" [ngValue]="book">{{book}}</option>
+      </select>
+    </div>
+    <div class="text-center" style="margin-top: 7px">
+      <button class="btn btn-primary" (click)="checkBooks()">Submit</button>
+    </div>
+
+  </div>
+
+</div>
