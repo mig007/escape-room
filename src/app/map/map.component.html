@@ -1,1 +1,20 @@
-Now to figure out the books
+<div class="map-container">
+    
+<svg width="100%" viewBox="0 0 1000 300"> 
+        <rect x="0" y="0" width="1000" height="300"
+        style="stroke: #000000; fill:blue;"/>
+        <path [attr.d]="getPath()" style="stroke: white; fill:none;"/>
+        <g *ngFor="let coor of coordiates">
+            <circle (click)="select(coor)" class="dot" [attr.cx]="coor.x" [attr.cy]="coor.y" r="7" [ngClass]="{'selected': coor.selected}"/>
+        <text [attr.x]="(coor.x)" [attr.y]="(coor.y + 24)" text-anchor="middle" >{{coor.label}}</text>
+        </g>
+        <g *ngFor="let coor of path; let idx = index">
+            <text [attr.x]="(coor.x-2)" [attr.y]="(coor.y+2)" style="font-size: 7pt; color: black;">{{idx + 1}}</text>
+        </g>
+        
+</svg>
+<div class="text-center " style="margin-top: 20px;">
+<button class="btn btn-primary" [disabled]="path.length != 6" (click)="submit()">Submit</button>
+<button class="btn btn-danger" style="margin-left: 15px;" (click)="clearAll()" [disabled]="!path.length">Clear</button>
+</div>
+</div>
