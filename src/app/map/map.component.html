@@ -1,8 +1,35 @@
 <div class="map-container">
     
-<svg width="100%" viewBox="0 0 1000 300"> 
+<div class="hint">
+
+    ------<br />
+    TO DISCOVER THE TREASURE, A PATH MUST BE DETECTED<br />
+    THIS PATH IS REVEALED WHEN SIX DOTS ARE CONNECTED<br />
+    THE SIX HIDDEN BOOKS WILL SHOW WHICH DOTS TO CHOOSE<br />
+    LISTEN CLOSELY AND REMEMBER YOUR GO’S AND YOUR DO’S<br />
+    ------<br />
+</div>
+
+<div class="row book-container">
+    <div class="col-md-4">
+            <div class="book">1. 1 Nephi</div>
+            <div class="book">2. Joseph Smith History</div>
+    </div>
+    <div class="col-md-4">
+            <div class="book">3. Luke</div>
+            <div class="book">4. Exodus</div>
+    </div>
+    <div class="col-md-4">
+            <div class="book">5. Mosiah</div>
+            <div class="book">6. 1 Kings</div>
+    </div>
+    
+</div>
+
+
+<svg width="100%" viewBox="0 0 1024 300"> 
         <rect x="0" y="0" width="1000" height="300"
-        style="stroke: #000000; fill:blue;"/>
+        style="stroke: none; fill: none;"/>
         <path [attr.d]="getPath()" style="stroke: white; fill:none;"/>
         <g *ngFor="let coor of coordiates">
             <circle (click)="select(coor)" class="dot" [attr.cx]="coor.x" [attr.cy]="coor.y" r="12" [ngClass]="{'selected': coor.selected}"/>
@@ -13,8 +40,9 @@
         </g>
         
 </svg>
+
+</div>
 <div class="text-center " style="margin-top: 20px;">
-<button class="btn btn-primary" [disabled]="path.length != 6" (click)="submit()">Submit</button>
-<button class="btn btn-danger" style="margin-left: 15px;" (click)="clearAll()" [disabled]="!path.length">Clear</button>
-</div>
-</div>
+        <button class="btn btn-primary" [disabled]="path.length != 6" (click)="submit()">Submit</button>
+        <button class="btn btn-danger" style="margin-left: 15px;" (click)="clearAll()" [disabled]="!path.length">Clear</button>
+        </div>

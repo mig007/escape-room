@@ -94,7 +94,7 @@ export class ScriptureSearchComponent extends BaseComponent implements OnInit {
         correct = false;
     });
     if (correct)
-      alert('you got it');
+      this.router.navigate(["/map"]);
     else
       alert('try again');
   }

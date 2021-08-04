@@ -10,5 +10,5 @@ export const COORDINATES: MapCoordinate[] = [
   {x:220, y:160, label: "4:9"},
   {x:550, y:153, label: "5:17", answerKey: 3},
   {x:800, y:140, label: "28:8", answerKey: 4},
-  {x:600, y:250, label: "1:17"}
+  {x:600, y:200, label: "1:17"}
 ]

@@ -36,6 +36,6 @@ export const VIDEOS: Video[] = [
     id: 5,
     name: "Password",
     fileName: "4ef0dc04-a267-d743-9751-74a47263325b-vod-64107d6d-e8fd-0f57-ff43-83ec1dd302e9",
-    next: "/map"
+    next: "/scripture-search"
   },
 ]

@@ -1,9 +1,10 @@
+<div style="margin-bottom: 20px; margin-left: 10px;">
+    <button type="button" class="btn btn-primary" (click)="reset()">reset grid</button>
+  </div>
+  
 <div class="data-row" *ngFor="let row of data ;let rowIdx = index">
   <div (click)="x.selected = !x.selected" [ngClass]="{'filled':x.selected || x.locked, 'first': rowIdx == 0}" class="data" *ngFor="let x of row">
     {{x.text}}
   </div>
-</div>
-<div style="margin-top: 20px; margin-left: 10px;">
-  <button type="button" class="btn btn-primary" (click)="reset()">reset grid</button>
 </div>
 

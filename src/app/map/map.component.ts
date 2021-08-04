@@ -56,9 +56,9 @@ export class MapComponent implements OnInit {
         correct = false;
     })
     if(correct)
-      alert('got it');
+      alert('you are the winner!!!!!');
     else
-      alert('nope');
+      alert('try again');
   }
 
 }
